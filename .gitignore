@@ -22,8 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-<<<<<<< HEAD
 src/firebase/
-=======
-src/firebase/
->>>>>>> 8c943b90be54542a088ed3eaba4f833f8e04d80b
+

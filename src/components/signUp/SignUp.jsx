@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './SignUp.css'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProviders';
 const SignUp = () => {
+// getting data from AuthProviders
+
+
     // making this state for checking if the confirm password is same as the first given pass:
     const [error, setError] = useState('');
+    const {createUser} = useContext(AuthContext);
     const handleSignUp = (event)=>{
                event.preventDefault();
                const form = event.target;
@@ -15,10 +20,24 @@ const SignUp = () => {
                 setError('password didnt match')
                 return
              }
-             else if(password.length <6){
+             else if(password.length < 6){
                 setError('Password must be at least 6 character')
                 return
              }
+             createUser(email, password)
+             .then((result) => {
+                // Signed in 
+                const loggedUser = result.user;
+                console.log(user);
+                // ...
+              })
+              .catch((error) => {
+                
+                const errorMessage = error.message;
+                console.log(errorMessage);
+                
+                // ..
+              });
     }
     return (
         <div className='form-container'>
